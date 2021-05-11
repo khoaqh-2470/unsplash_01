@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sun.unsplash_01.databinding.FragmentCollectionBinding
-import com.sun.unsplash_01.ui.home.HomeFragment
 
 class CollectionFragment : Fragment() {
 
@@ -21,6 +20,6 @@ class CollectionFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() = HomeFragment()
+        fun newInstance() = CollectionFragment()
     }
 }
