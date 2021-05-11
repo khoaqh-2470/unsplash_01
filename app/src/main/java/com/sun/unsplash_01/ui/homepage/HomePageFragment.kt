@@ -81,8 +81,8 @@ class HomePageFragment : Fragment() {
                 binding.bottomNavHomePage.menu.getItem(position).isChecked = true
                 when (position) {
                     ItemBottomNav.HOME_ITEM.ordinal -> setTitle(R.string.home)
-                    ItemBottomNav.HOME_ITEM.ordinal -> setTitle(R.string.collection)
-                    ItemBottomNav.HOME_ITEM.ordinal -> setTitle(R.string.favorite)
+                    ItemBottomNav.COLLECTION_ITEM.ordinal -> setTitle(R.string.collection)
+                    ItemBottomNav.FAVORITE_ITEM.ordinal -> setTitle(R.string.favorite)
                 }
             }
 
