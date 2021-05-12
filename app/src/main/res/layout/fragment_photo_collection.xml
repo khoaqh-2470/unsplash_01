@@ -3,6 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="collection"
+            type="com.sun.unsplash_01.data.model.Collection" />
+
+        <variable
+            name="viewModel"
+            type="com.sun.unsplash_01.ui.photo_collection.PhotoCollectionViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.sun.unsplash_01.ui.photo_collection.PhotoCollectionAdapter" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -43,8 +58,9 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewTitleCollection"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="2dp"
+                android:layout_height="19dp"
+                android:text="@{collection.title}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -53,18 +69,23 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="@dimen/_5sdp"
             app:layout_constraintHeight_percent="0.939"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+            app:onRefresh="@{viewModel::onRefresh}">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewPhotoCollections"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false"
+                app:adapter="@{adapter}"
+                app:isLoading="@{viewModel.isLoading}"
                 app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                app:onLoadMore="@{viewModel::onLoadData}"
                 app:spanCount="2" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

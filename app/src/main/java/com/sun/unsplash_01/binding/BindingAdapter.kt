@@ -5,9 +5,11 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.sun.unsplash_01.extensions.loadFromUrl
 import com.sun.unsplash_01.extensions.loadUrlStaggered
 import com.sun.unsplash_01.utils.LoadMoreRecyclerViewListener
+import com.sun.unsplash_01.utils.RefreshRecyclerViewListener
 
 @BindingAdapter("onLoadImage")
 fun ImageView.loadImage(url: String) {
@@ -55,6 +57,13 @@ fun RecyclerView.onScrollListener(
             }
         }
     })
+}
+
+@BindingAdapter(value = ["onRefresh"])
+fun SwipeRefreshLayout.onRefresh(refresh: RefreshRecyclerViewListener) {
+    setOnRefreshListener {
+        refresh.onRefresh()
+    }
 }
 
 fun getLastVisibleItem(lastVisibleItemPositions: IntArray): Int {
