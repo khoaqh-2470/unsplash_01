@@ -38,7 +38,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="@dimen/_24sdp"
-                android:src="@drawable/ic_search" />
+                android:src="@drawable/avc" />
         </RelativeLayout>
 
         <androidx.viewpager.widget.ViewPager

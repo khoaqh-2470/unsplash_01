@@ -1,5 +1,7 @@
 package com.sun.unsplash_01.ui.homepage
 
+import android.content.Intent
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +12,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.sun.unsplash_01.R
 import com.sun.unsplash_01.databinding.FragmentHomePageBinding
+import com.sun.unsplash_01.service.DownloadImage
+import com.sun.unsplash_01.service.DownloadImageService
 import com.sun.unsplash_01.ui.collection.CollectionFragment
 import com.sun.unsplash_01.ui.favorite.FavoriteFragment
 import com.sun.unsplash_01.ui.home.HomeFragment
@@ -37,7 +41,14 @@ class HomePageFragment : Fragment() {
 
     private fun onEvent() {
         binding.imageViewSearch.setOnClickListener {
-            findNavController().navigate(R.id.searchFragment)
+//            findNavController().navigate(R.id.searchFragment)
+//            DownloadImage.newInstance(requireActivity())
+//                .downloadImage("https://images.unsplash.com/photo-1583141880926-55e0a8efeff3?ixid=MnwyMjk3NDZ8MHwxfGFsbHx8fHx8fHx8fDE2MjA3Mjk1MzY&ixlib=rb-1.2.1")
+            val bitmapPhoto = binding.imageViewSearch.drawable.let {
+                it as BitmapDrawable
+                it.bitmap
+            }
+            DownloadImage.newInstance(requireContext()).saveImage(bitmapPhoto)
         }
     }
 
@@ -75,7 +86,8 @@ class HomePageFragment : Fragment() {
                 position: Int,
                 positionOffset: Float,
                 positionOffsetPixels: Int
-            ) {}
+            ) {
+            }
 
             override fun onPageSelected(position: Int) {
                 binding.bottomNavHomePage.menu.getItem(position).isChecked = true
