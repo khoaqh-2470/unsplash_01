@@ -2,6 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="onItemClickListener"
+            type="com.sun.unsplash_01.utils.OnItemClickListener" />
+
+        <variable
+            name="photoCollection"
+            type="com.sun.unsplash_01.data.model.PhotoCollection" />
+    </data>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,17 +30,20 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="@{()->onItemClickListener.onItemClick(photoCollection)}"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:onLoadImageStaggered="@{photoCollection.image.small}" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_5sdp"
+                android:text="@{String.valueOf(photoCollection.likes)}"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_14sdp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/buttonImageFavorite"
                 app:layout_constraintEnd_toStartOf="@+id/buttonImageFavorite"
                 app:layout_constraintTop_toTopOf="@+id/buttonImageFavorite" />

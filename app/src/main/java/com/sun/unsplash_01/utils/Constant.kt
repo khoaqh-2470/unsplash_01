@@ -7,4 +7,5 @@ object Constant {
     const val API_KEY = BuildConfig.API_KEY
     const val DEFAULT_PAGE = 1
     const val DATABASE_NAME = "unsplash_01"
+    const val DEFAULT_ID = ""
 }
