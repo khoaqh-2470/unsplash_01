@@ -8,12 +8,13 @@ import androidx.cardview.widget.CardView
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager.widget.PagerAdapter
 import com.sun.unsplash_01.R
+import com.sun.unsplash_01.data.model.PhotoCollection
 import com.sun.unsplash_01.databinding.ItemSlideHomeBinding
 import com.sun.unsplash_01.extensions.loadFromUrl
 
 class HomeSlideAdapter(
     context: Context,
-    private val images: List<String>,
+    private val images: MutableList<PhotoCollection>,
     private val onItemClick: (String) -> Unit
 ) : PagerAdapter() {
 
@@ -32,8 +33,8 @@ class HomeSlideAdapter(
         binding =
             DataBindingUtil.inflate(layoutInflater, R.layout.item_slide_home, container, false)
         binding.imageViewSlide.apply {
-            loadFromUrl(images[position])
-            setOnClickListener { onItemClick(images[position]) }
+            loadFromUrl(images[position].image.regular)
+            setOnClickListener { onItemClick(images[position].id) }
         }
         container.addView(binding.root)
         return binding.root

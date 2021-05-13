@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sun.unsplash_01.data.model.PhotoCollection
-import com.sun.unsplash_01.data.repository.CollectionRepository
+import com.sun.unsplash_01.data.repository.PhotoRepository
 import com.sun.unsplash_01.extensions.plusAssign
 import com.sun.unsplash_01.utils.Constant.DEFAULT_ID
 import com.sun.unsplash_01.utils.Constant.DEFAULT_PAGE
@@ -15,7 +15,7 @@ import com.sun.unsplash_01.utils.Resource
 import kotlinx.coroutines.launch
 
 class PhotoCollectionViewModel(
-    private val collectionRepository: CollectionRepository
+    private val photoRepository: PhotoRepository
 ) : ViewModel(),
     LoadMoreRecyclerViewListener,
     RefreshRecyclerViewListener {
@@ -39,7 +39,7 @@ class PhotoCollectionViewModel(
             try {
                 this@PhotoCollectionViewModel.id = id
                 _photoCollection.plusAssign(
-                    collectionRepository.getPhotosCollection(id, currentPosition)
+                    photoRepository.getPhotosCollection(id, currentPosition)
                 )
                 _resource.postValue(Resource.success(data = photoCollection))
                 currentPosition++

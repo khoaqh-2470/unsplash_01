@@ -6,17 +6,32 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.sun.unsplash_01.R
+import com.sun.unsplash_01.data.model.PhotoCollection
 import com.sun.unsplash_01.databinding.FragmentHomeBinding
+import com.sun.unsplash_01.extensions.toGone
+import com.sun.unsplash_01.extensions.toVisible
+import com.sun.unsplash_01.utils.Status
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
 class HomeFragment : Fragment() {
 
-    lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: FragmentHomeBinding
 
-    private val images = listOf<String>()
+    private val images = mutableListOf<PhotoCollection>()
+    private val homeViewModel by viewModel<HomeViewModel>()
+    private val homeAdapter by lazy {
+        HomeSlideAdapter(requireActivity(), images) {
+            findNavController().navigate(R.id.imageDetailFragment)
+        }
+    }
+    private val homeTopicsAdapter by lazy {
+        HomeTopicsAdapter { }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,13 +43,30 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initBinDing()
         initSlide()
+        initTopics()
+    }
+
+    private fun initBinDing() {
+        binding.apply {
+            lifecycleOwner = this@HomeFragment
+            adapterTopics = homeTopicsAdapter
+            viewModel = homeViewModel
+        }
     }
 
     private fun initSlide() {
-        val homeAdapter = HomeSlideAdapter(requireActivity(), images) {
-            findNavController().navigate(R.id.imageDetailFragment)
-        }
+        homeViewModel.photos.observe(viewLifecycleOwner, {
+            images.apply {
+                clear()
+                addAll(it)
+            }
+            binding.viewPagerSlide.apply {
+                if (images.size == 0) toGone() else toVisible()
+            }
+            homeAdapter.notifyDataSetChanged()
+        })
         binding.viewPagerSlide.apply {
             adapter = homeAdapter
             offscreenPageLimit = OFF_SCREEN_PAGE_LIMIT
@@ -55,6 +87,25 @@ class HomeFragment : Fragment() {
                 }
             }, DELAY_TIME, DELAY_NEXT_ITEM)
         }
+    }
+
+
+    private fun initTopics() {
+        homeViewModel.topics.observe(viewLifecycleOwner, {
+            homeTopicsAdapter.submitList(it.toMutableList())
+        })
+        homeViewModel.resource.observe(viewLifecycleOwner, {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    binding.swipeRefreshHome.isRefreshing = false
+                }
+                Status.ERROR -> {
+                    binding.swipeRefreshHome.isRefreshing = false
+                }
+                Status.LOADING -> {
+                }
+            }
+        })
     }
 
     companion object {

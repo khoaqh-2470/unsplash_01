@@ -14,7 +14,8 @@ class MyApplication : Application() {
                 storageModule,
                 retrofitModule,
                 viewModelModule,
-                repositoryModule
+                repositoryModule,
+                dataSourceModule
             )
         }
     }
