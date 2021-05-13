@@ -11,10 +11,17 @@
         <action
             android:id="@+id/action_homePageFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_imageDetailFragment"
+            app:destination="@id/imageDetailFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.sun.unsplash_01.ui.search.SearchFragment"
         android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/imageDetailFragment"
+        android:name="com.sun.unsplash_01.ui.detail.ImageDetailFragment"
+        android:label="ImageDetailFragment" />
 </navigation>

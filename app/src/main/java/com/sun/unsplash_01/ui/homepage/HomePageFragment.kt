@@ -37,7 +37,7 @@ class HomePageFragment : Fragment() {
 
     private fun onEvent() {
         binding.imageViewSearch.setOnClickListener {
-            NavHostFragment.findNavController(this).navigate(R.id.searchFragment)
+            findNavController().navigate(R.id.searchFragment)
         }
     }
 
@@ -67,7 +67,7 @@ class HomePageFragment : Fragment() {
             CollectionFragment.newInstance(),
             FavoriteFragment.newInstance()
         )
-        parentFragmentManager.let {
+        childFragmentManager.let {
             binding.viewPagerHomePage.adapter = HomePageAdapter(it, listFragment)
         }
         binding.viewPagerHomePage.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
