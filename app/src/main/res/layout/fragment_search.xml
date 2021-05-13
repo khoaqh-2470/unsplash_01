@@ -1,8 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/searchLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.search.SearchFragment" />
+        tools:context=".ui.search.SearchFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:elevation="@dimen/_5sdp"
+            android:padding="@dimen/_5sdp"
+            app:layout_constraintHeight_percent="0.07"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonBack"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/ic_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="18:16"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:background="@drawable/search_background"
+                android:closeIcon="@android:color/transparent"
+                android:searchIcon="@drawable/ic_search"
+                app:iconifiedByDefault="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/buttonBack"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.83"
+                app:queryBackground="@null" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/_5sdp"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+            app:tabIndicatorColor="@color/black"
+            app:tabIndicatorHeight="@dimen/_1sdp" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPagerSearch"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
