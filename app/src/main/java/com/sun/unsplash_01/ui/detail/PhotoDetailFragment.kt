@@ -130,7 +130,7 @@ class PhotoDetailFragment : Fragment() {
     }
 
     companion object {
-        private const val BUNDLE_PHOTO_ID = "BUNDLE_PHOTO_ID"
+        const val BUNDLE_PHOTO_ID = "BUNDLE_PHOTO_ID"
 
         fun newInstance(id: String?) = PhotoDetailFragment().apply {
             arguments = bundleOf(BUNDLE_PHOTO_ID to id)

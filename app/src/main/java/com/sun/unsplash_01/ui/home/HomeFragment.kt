@@ -14,6 +14,7 @@ import com.sun.unsplash_01.data.model.PhotoCollection
 import com.sun.unsplash_01.databinding.FragmentHomeBinding
 import com.sun.unsplash_01.extensions.toGone
 import com.sun.unsplash_01.extensions.toVisible
+import com.sun.unsplash_01.ui.detail.PhotoDetailFragment
 import com.sun.unsplash_01.utils.Status
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
@@ -26,7 +27,10 @@ class HomeFragment : Fragment() {
     private val homeViewModel by viewModel<HomeViewModel>()
     private val homeAdapter by lazy {
         HomeSlideAdapter(requireActivity(), images) {
-            findNavController().navigate(R.id.imageDetailFragment)
+            findNavController().navigate(
+                R.id.imageDetailFragment,
+                bundleOf(PhotoDetailFragment.BUNDLE_PHOTO_ID to it)
+            )
         }
     }
     private val homeTopicsAdapter by lazy {
@@ -109,7 +113,6 @@ class HomeFragment : Fragment() {
     }
 
     companion object {
-
         private const val DELAY_TIME = 2000L
         private const val DELAY_NEXT_ITEM = 3000L
         private const val ITEM_DISTANCE = 30
