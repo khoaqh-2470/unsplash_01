@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="adapter"
+            type="com.sun.unsplash_01.ui.favorite.adapter.FavoriteAdapter" />
+    </data>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewFavorite"
+        adapter="@{adapter}"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.favorite.FavoriteFragment"/>
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        tools:context=".ui.favorite.FavoriteFragment"
+        tools:listitem="@layout/item_favorite" />
 </layout>

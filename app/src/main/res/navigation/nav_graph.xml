@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/imageDetailFragment">
+    app:startDestination="@id/homePageFragment">
 
     <fragment
         android:id="@+id/homePageFragment"
@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_searchCollectionFragment_to_photo_collectionFragment"
             app:destination="@id/photoCollectionFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_imageFavoriteFragment"
+            app:destination="@id/favoritePhotoFragment" />
     </fragment>
 
     <fragment
@@ -35,4 +38,13 @@
         android:id="@+id/photoCollectionFragment"
         android:name="com.sun.unsplash_01.ui.photo_collection.PhotoCollectionFragment"
         android:label="PhotoCollectionFragment" />
+
+    <fragment
+        android:id="@+id/favoritePhotoFragment"
+        android:name="com.sun.unsplash_01.ui.favorite.FavoriteFragment"
+        android:label="FavoritePhotoFragment">
+        <action
+            android:id="@+id/action_favoriteFragment_to_photoDetailFragment"
+            app:destination="@id/imageDetailFragment" />
+    </fragment>
 </navigation>
