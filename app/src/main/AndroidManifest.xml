@@ -18,12 +18,28 @@
         <activity
             android:windowSoftInputMode="adjustPan"
             android:name=".ui.main.MainActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
+
+        <provider
+            android:name=".ui.search.SuggestionProvider"
+            android:authorities="com.sun.unsplash_01"
+            android:enabled="true"
+            android:exported="false" />
     </application>
 </manifest>

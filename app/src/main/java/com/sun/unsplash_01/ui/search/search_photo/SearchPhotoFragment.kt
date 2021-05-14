@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.sun.unsplash_01.R
 import com.sun.unsplash_01.databinding.FragmentSearchPhotoBinding
+import com.sun.unsplash_01.ui.detail.PhotoDetailFragment.Companion.BUNDLE_PHOTO_ID
 import com.sun.unsplash_01.ui.photo_collection.PhotoCollectionAdapter
 import com.sun.unsplash_01.utils.Status
 import org.koin.android.ext.android.inject
@@ -34,6 +38,10 @@ class SearchPhotoFragment : Fragment() {
 
     private fun handleEvent() {
         photoAdapter.setOnClickItem {
+            findNavController().navigate(
+                R.id.imageDetailFragment,
+                bundleOf(BUNDLE_PHOTO_ID to it.id)
+            )
         }
     }
 
