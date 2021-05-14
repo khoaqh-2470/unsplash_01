@@ -2,8 +2,9 @@ package com.sun.unsplash_01.module
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.sun.unsplash_01.data.source.remote.CollectionAPI
+import com.sun.unsplash_01.data.source.remote.APIService
 import com.sun.unsplash_01.data.source.remote.RetrofitClient
+import com.sun.unsplash_01.utils.Constant
 import com.sun.unsplash_01.utils.Constant.BASE_URL
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
@@ -12,9 +13,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val apiModule = module {
 
-    fun provideCollectionApi(retrofit: RetrofitClient) = retrofit.create(CollectionAPI::class.java)
+    fun provideAPIService(retrofit: RetrofitClient) = retrofit.create(APIService::class.java)
 
-    single { provideCollectionApi(get()) }
+    single { provideAPIService(get()) }
 }
 
 val retrofitModule = module {
@@ -26,6 +27,14 @@ val retrofitModule = module {
     fun provideHttpClient(): OkHttpClient {
         return OkHttpClient
             .Builder()
+            .addInterceptor { chain ->
+                val request = chain.request().newBuilder()
+                val originalHttpUrl = chain.request().url()
+                val url = originalHttpUrl.newBuilder()
+                    .addQueryParameter(Constant.API_CLIENT_ID, Constant.API_KEY).build()
+                request.url(url)
+                return@addInterceptor chain.proceed(request.build())
+            }
             .build()
     }
 

@@ -1,14 +1,14 @@
-package com.sun.unsplash_01.data.models
+package com.sun.unsplash_01.data.model
 
 import com.google.gson.annotations.SerializedName
 
 data class Topic(
     @SerializedName("id")
-    val id: String = "",
+    val id: String,
     @SerializedName("title")
     val title: String = "",
     @SerializedName("description")
     val description: String = "",
-    @SerializedName("photo")
-    val photo: String = ""
+    @SerializedName("cover_photo")
+    val photo: PhotoCollection,
 )
