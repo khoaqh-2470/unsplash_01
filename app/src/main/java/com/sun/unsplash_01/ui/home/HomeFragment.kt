@@ -14,6 +14,8 @@ import com.sun.unsplash_01.data.model.PhotoCollection
 import com.sun.unsplash_01.databinding.FragmentHomeBinding
 import com.sun.unsplash_01.extensions.toGone
 import com.sun.unsplash_01.extensions.toVisible
+import com.sun.unsplash_01.ui.collection.CollectionFragment
+import com.sun.unsplash_01.ui.photo_collection.PhotoCollectionFragment
 import com.sun.unsplash_01.utils.Status
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
@@ -30,7 +32,12 @@ class HomeFragment : Fragment() {
         }
     }
     private val homeTopicsAdapter by lazy {
-        HomeTopicsAdapter { }
+        HomeTopicsAdapter {
+            findNavController().navigate(
+                R.id.photoCollectionFragment,
+                bundleOf(PhotoCollectionFragment.BUNDLE_TOPICS to it)
+            )
+        }
     }
 
     override fun onCreateView(

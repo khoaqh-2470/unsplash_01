@@ -5,6 +5,6 @@ import com.sun.unsplash_01.data.repository.SearchRepository
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    single { PhotoRepository(get()) }
+    single { PhotoRepository(get(), get()) }
     single { SearchRepository(get()) }
 }

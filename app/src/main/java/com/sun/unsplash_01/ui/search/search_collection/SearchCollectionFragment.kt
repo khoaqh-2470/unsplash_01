@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.sun.unsplash_01.R
 import com.sun.unsplash_01.databinding.FragmentSearchCollectionBinding
 import com.sun.unsplash_01.ui.collection.CollectionAdapter
-import com.sun.unsplash_01.ui.collection.CollectionFragment
+import com.sun.unsplash_01.ui.photo_collection.PhotoCollectionFragment
 import com.sun.unsplash_01.utils.Status
 import org.koin.android.ext.android.inject
 
@@ -40,7 +40,7 @@ class SearchCollectionFragment : Fragment() {
         collectionAdapter.setOnClickItem {
             findNavController().navigate(
                 R.id.photoCollectionFragment,
-                bundleOf(CollectionFragment.BUNDLE_COLLECTION to it)
+                bundleOf(PhotoCollectionFragment.BUNDLE_COLLECTION to it)
             )
         }
     }

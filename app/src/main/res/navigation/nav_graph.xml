@@ -28,7 +28,7 @@
         android:label="SearchFragment" />
     <fragment
         android:id="@+id/imageDetailFragment"
-        android:name="com.sun.unsplash_01.ui.detail.ImageDetailFragment"
+        android:name="com.sun.unsplash_01.ui.detail.PhotoDetailFragment"
         android:label="ImageDetailFragment" />
 
     <fragment

@@ -12,8 +12,8 @@ import com.sun.unsplash_01.utils.LoadMoreRecyclerViewListener
 import com.sun.unsplash_01.utils.RefreshRecyclerViewListener
 
 @BindingAdapter("onLoadImage")
-fun ImageView.loadImage(url: String) {
-    loadFromUrl(url)
+fun ImageView.loadImage(url: String?) {
+    url?.let { loadFromUrl(it) }
 }
 
 @BindingAdapter("onLoadImageStaggered")

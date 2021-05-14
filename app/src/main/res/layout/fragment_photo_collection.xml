@@ -6,10 +6,6 @@
     <data>
 
         <variable
-            name="collection"
-            type="com.sun.unsplash_01.data.model.Collection" />
-
-        <variable
             name="viewModel"
             type="com.sun.unsplash_01.ui.photo_collection.PhotoCollectionViewModel" />
 
@@ -46,10 +42,9 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:text="@string/collection"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/buttonBack"
@@ -58,9 +53,8 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewTitleCollection"
-                android:layout_width="2dp"
-                android:layout_height="19dp"
-                android:text="@{collection.title}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16sdp"
                 app:layout_constraintBottom_toBottomOf="parent"

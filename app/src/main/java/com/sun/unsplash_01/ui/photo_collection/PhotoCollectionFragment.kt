@@ -8,8 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.sun.unsplash_01.data.model.Collection
+import com.sun.unsplash_01.data.model.Topic
 import com.sun.unsplash_01.databinding.FragmentPhotoCollectionBinding
-import com.sun.unsplash_01.ui.collection.CollectionFragment.Companion.BUNDLE_COLLECTION
+import com.sun.unsplash_01.utils.Constant
 import com.sun.unsplash_01.utils.Status
 import org.koin.android.ext.android.inject
 
@@ -43,7 +44,20 @@ class PhotoCollectionFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         arguments?.getParcelable<Collection>(BUNDLE_COLLECTION)?.let {
-            photoCollectionViewModel.fetchCollections(it.id)
+
+            photoCollectionViewModel.fetchCollections(it.id, Constant.API_COLLECTION)
+            setTitle(Constant.API_COLLECTION, it.title)
+        } ?: arguments?.getParcelable<Topic>(BUNDLE_TOPICS)?.let {
+
+            photoCollectionViewModel.fetchCollections(it.id, Constant.API_TOPIC)
+            setTitle(Constant.API_TOPIC, it.title)
+        }
+    }
+
+    private fun setTitle(apiName: String, title: String) {
+        binding.apply {
+            textViewTitleCollection.text = title
+            textTitle.text = apiName
         }
     }
 
@@ -71,9 +85,12 @@ class PhotoCollectionFragment : Fragment() {
                 StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS
             adapter = photoCollectionAdapter
         }
+
     }
 
     companion object {
-        fun newInstance() = PhotoCollectionFragment()
+
+        const val BUNDLE_COLLECTION = "BUNDLE_COLLECTION"
+        const val BUNDLE_TOPICS = "BUNDLE_TOPICS"
     }
 }
