@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/homePageFragment">
+    app:startDestination="@id/imageDetailFragment">
 
     <fragment
         android:id="@+id/homePageFragment"
@@ -28,7 +28,7 @@
         android:label="SearchFragment" />
     <fragment
         android:id="@+id/imageDetailFragment"
-        android:name="com.sun.unsplash_01.ui.detail.ImageDetailFragment"
+        android:name="com.sun.unsplash_01.ui.detail.PhotoDetailFragment"
         android:label="ImageDetailFragment" />
 
     <fragment

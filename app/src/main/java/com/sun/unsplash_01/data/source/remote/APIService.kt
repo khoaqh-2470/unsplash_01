@@ -2,6 +2,7 @@ package com.sun.unsplash_01.data.source.remote
 
 import com.sun.unsplash_01.data.model.Collection
 import com.sun.unsplash_01.data.model.PhotoCollection
+import com.sun.unsplash_01.data.model.PhotoDetail
 import com.sun.unsplash_01.data.model.Topic
 import com.sun.unsplash_01.data.source.response.SearchCollectionResponse
 import com.sun.unsplash_01.data.source.response.SearchPhotoResponse
@@ -44,4 +45,9 @@ interface APIService {
         @Query("query") keyword: String,
         @Query("page") page: Int = Constant.DEFAULT_PAGE
     ): SearchPhotoResponse
+
+    @GET("/photos/{id}")
+    suspend fun getPhotoDetail(
+        @Path("id") id: String?
+    ): PhotoDetail
 }

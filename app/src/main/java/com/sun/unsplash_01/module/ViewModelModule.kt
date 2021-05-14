@@ -1,6 +1,7 @@
 package com.sun.unsplash_01.module
 
 import com.sun.unsplash_01.ui.collection.CollectionViewModel
+import com.sun.unsplash_01.ui.detail.PhotoDetailViewModel
 import com.sun.unsplash_01.ui.home.HomeViewModel
 import com.sun.unsplash_01.ui.photo_collection.PhotoCollectionViewModel
 import com.sun.unsplash_01.ui.search.search_collection.SearchCollectionViewModel
@@ -14,4 +15,5 @@ val viewModelModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { SearchCollectionViewModel(get()) }
     viewModel { SearchPhotoViewModel(get()) }
+    viewModel { PhotoDetailViewModel(get()) }
 }

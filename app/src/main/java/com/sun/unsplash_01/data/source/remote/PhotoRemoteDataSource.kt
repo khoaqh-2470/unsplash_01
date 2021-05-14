@@ -1,5 +1,6 @@
 package com.sun.unsplash_01.data.source.remote
 
+import com.sun.unsplash_01.data.model.PhotoDetail
 import com.sun.unsplash_01.data.source.PhotoDataSource
 
 
@@ -14,4 +15,5 @@ class PhotoRemoteDataSource(private val apiService: APIService) : PhotoDataSourc
 
     override suspend fun getRandomPhotos() = apiService.getRandomPhotos()
 
+    override suspend fun getPhotoDetail(id: String?): PhotoDetail = apiService.getPhotoDetail(id)
 }
