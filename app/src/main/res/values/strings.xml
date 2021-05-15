@@ -11,4 +11,5 @@
     <string name="warmth">Warmth</string>
     <string name="counter_photo"> %s Photos</string>
     <string name="text_loading">Loading...</string>
+    <string name="search_hint">search</string>
 </resources>
